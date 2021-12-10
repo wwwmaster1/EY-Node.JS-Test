@@ -16,17 +16,16 @@ https.get(options, (resp) => {
 
   resp.on('end', () => {    
 
-    for(var i = 0; i < JSON.parse(data).length; i++)
-    {
+    for(var i = 0; i < JSON.parse(data).length; i++){
       langs[i] = JSON.parse(data)[i].language;
     }
     langs.sort();
-    for(var i = 0; i < langs.length; i++)
-    {
-      if (i == 0){
+    for(var i = 0; i < langs.length; i++){
+      if (langs[i] === null) {
+      } else if (i == 0){
         console.log(langs[i]);
-        cntr = 1;
-      } else if (langs[i] != langs[i-1] ){
+        cntr = 1;          
+      } else if (langs[i] != langs[i-1]){
         console.log(cntr);
         console.log(langs[i]);
         cntr = 1;
@@ -34,7 +33,7 @@ https.get(options, (resp) => {
         cntr++;
       }
     }
-
+    console.log(cntr);
   });
 
 }).on("error", (err) => {
